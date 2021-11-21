@@ -2,20 +2,21 @@
 # license: GPLv3
 
 import pygame as pg
-from pygame.draw import *
+import ctypes
 
 """Модуль визуализации.
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
-Функции, создающие гaрафические объекты и перемещающие их на экране, принимают физические координаты
+Функции, создающие графические объекты и перемещающие их на экране, принимают физические координаты
 """
 
 header_font = "Arial-16"
 """Шрифт в заголовке"""
 
-window_width = 800
+user32 = ctypes.windll.user32
+window_width = user32.GetSystemMetrics(0)
 """Ширина окна"""
 
-window_height = 600
+window_height = user32.GetSystemMetrics(1) - 55
 """Высота окна"""
 
 scale_factor = 1
@@ -58,7 +59,7 @@ def scale_y(y):
 
     **y** — y-координата модели.
     """
-    return int(-y * scale_factor) + window_height // 2
+    return int(y * scale_factor) + window_height // 2
 
 
 if __name__ == "__main__":
@@ -83,6 +84,8 @@ class DrawableObject:
     def __init__(self, obj):
         self.obj = obj
 
-    def draw(self, surface):
-        object_ = self.obj
-        circle(surface, object_.color, (scale_x(object_.x), scale_y(object_.y)), object_.R)
+    def draw(self, surface):  # функция рисования
+        self.x = scale_x(self.obj.x)
+        self.y = scale_y(self.obj.y)
+        self.r = self.obj.R
+        pg.draw.circle(surface, self.obj.color, (self.x, self.y), self.r)

@@ -1,14 +1,13 @@
 # coding: utf-8
 # license: GPLv3
 
-import pygame as pg
 from solar_vis import *
 from solar_model import *
 from solar_input import *
-from solar_objects import *
 import thorpy
 import time
 import numpy as np
+import ctypes
 
 timer = None
 
@@ -21,7 +20,7 @@ model_time = 0
 """Физическое время от начала расчёта.
 Тип: float"""
 
-time_scale = 50000.0
+time_scale = 1000.0
 """Шаг по времени при моделировании.
 Тип: float"""
 
@@ -51,6 +50,8 @@ def start_execution():
 
 def pause_execution():
     global perform_execution
+    global space_objects
+    write_space_objects_data_to_file('out.txt', space_objects)
     perform_execution = False
 
 
@@ -102,7 +103,7 @@ def init_ui(screen):
     button_stop = thorpy.make_button("Quit", func=stop_execution)
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
-    timer = thorpy.OneLineText("Seconds passed")
+    Timer = thorpy.OneLineText("Seconds passed")
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
 
@@ -112,7 +113,7 @@ def init_ui(screen):
         button_stop,
         button_play,
         button_load,
-        timer])
+        Timer])
     reaction1 = thorpy.Reaction(reacts_to=thorpy.constants.THORPY_EVENT,
                                 reac_func=slider_reaction,
                                 event_args={"id": thorpy.constants.EVENT_SLIDE},
@@ -127,7 +128,7 @@ def init_ui(screen):
     box.set_topleft((0, 0))
     box.blit()
     box.update()
-    return menu, box, timer
+    return menu, box, Timer
 
 
 def main():
@@ -149,8 +150,9 @@ def main():
 
     pg.init()
 
-    width = 800
-    height = 600
+    user32 = ctypes.windll.user32
+    width = user32.GetSystemMetrics(0)
+    height = user32.GetSystemMetrics(1) - 55
     screen = pg.display.set_mode((width, height))
     last_time = time.perf_counter()
     drawer = Drawer(screen)
