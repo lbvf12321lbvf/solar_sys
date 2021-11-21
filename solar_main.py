@@ -149,8 +149,8 @@ def main():
 
     pg.init()
 
-    width = 1000
-    height = 900
+    width = 800
+    height = 600
     screen = pg.display.set_mode((width, height))
     last_time = time.perf_counter()
     drawer = Drawer(screen)
