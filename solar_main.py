@@ -47,6 +47,11 @@ def start_execution():
     global perform_execution
     perform_execution = True
 
+def save_execution():
+    """Обработчик события нажатия на кнопку Save.
+    """
+    write_space_objects_data_to_file('solar_system.txt', space_objects)
+
 
 def pause_execution():
     global perform_execution
@@ -103,6 +108,7 @@ def init_ui(screen):
     button_stop = thorpy.make_button("Quit", func=stop_execution)
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
+    button_save = thorpy.make_button("Save", func=save_execution)
     Timer = thorpy.OneLineText("Seconds passed")
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
@@ -113,6 +119,7 @@ def init_ui(screen):
         button_stop,
         button_play,
         button_load,
+        button_save,
         Timer])
     reaction1 = thorpy.Reaction(reacts_to=thorpy.constants.THORPY_EVENT,
                                 reac_func=slider_reaction,
