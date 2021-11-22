@@ -186,7 +186,7 @@ def main():
         handle_events(pg.event.get(), menu)
         cur_time = last_time + time_scale
         if perform_execution:
-            execution((cur_time - last_time) * time_scale)
+            execution(cur_time - last_time)
             text = "%d seconds passed" % (int(model_time))
             timer.set_text(text)
 
