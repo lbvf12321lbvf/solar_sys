@@ -10,7 +10,12 @@ def graphic(satellite_v, satellite_r,  time):
     v.append(satellite_v)
     r.append(satellite_r)
 
-
+with open("stats.txt", 'r') as input_file:
+    for line in input_file:
+        data = line.split()
+        velocity = (data[7]**2 + data[8]**2)**0.5
+        graphic(velocity, data[2], data[0])
+        # Timer, obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m, obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy
 
 def draw_garphic():
 
