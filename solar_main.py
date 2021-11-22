@@ -80,9 +80,6 @@ def open_file():
     global browser
     global model_time
 
-    with open(output_filename, 'w') as out_file:
-        out_file.write("")
-
     model_time = 0.0
     in_filename = str(name_of_file)
     space_objects = read_space_objects_data_from_file(in_filename)
