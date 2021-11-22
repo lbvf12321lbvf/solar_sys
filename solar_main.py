@@ -39,6 +39,7 @@ def execution(delta):
     global model_time
     global displayed_time
     recalculate_space_objects_positions([dr.obj for dr in space_objects], delta)
+    write_space_objects_stats_to_file("stats.txt", space_objects, model_time)
     model_time += delta
 
 
