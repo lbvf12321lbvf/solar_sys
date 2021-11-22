@@ -122,7 +122,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
                                                               obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy))
 
 
-def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
+def write_space_objects_stats_to_file(output_filename, space_objects, Timer1337):
     """Сохраняет данные о космических объектах в файл.
 
     Строки должны иметь следующий формат:
@@ -144,7 +144,7 @@ def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
         for i in range(len(space_objects)):
             obj = space_objects[i]
             out_file.write(
-                "{} {} {} {} {} {} {} {} {} {}\n".format(i, int(Timer), obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
+                "{} {} {} {} {} {} {} {} {} {}\n".format(i, int(Timer1337), obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
                                                       obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy))
 
 
