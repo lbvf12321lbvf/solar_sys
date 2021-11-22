@@ -51,3 +51,5 @@ def draw_garphic():
     plt.ylabel('r, m')
 
     plt.show()
+
+draw_garphic()
