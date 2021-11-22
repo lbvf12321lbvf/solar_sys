@@ -19,9 +19,9 @@ def draw_garphic():
         for line in input_file:
             data = line.split()
             if data[2] == "planet":
-                velocity = (float(data[7]) ** 2 + float(data[8]) ** 2) ** 0.5
-                radius_vec = (float(data[5]) ** 2 + float(data[6]) ** 2) ** 0.5
-                graphic(velocity, radius_vec, data[0])
+                velocity = (float(data[8]) ** 2 + float(data[9]) ** 2) ** 0.5
+                radius_vec = (float(data[6]) ** 2 + float(data[7]) ** 2) ** 0.5
+                graphic(velocity, radius_vec, data[1])
             #i, Timer, obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m, obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy
 
     plt.subplots(2,2, figsize=(10,10))
