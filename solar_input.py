@@ -122,5 +122,27 @@ def write_space_objects_data_to_file(output_filename, space_objects):
                                                               obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy))
 
 
+def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
+    """Сохраняет данные о космических объектах в файл.
+
+    Строки должны иметь следующий формат:
+
+    Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
+
+    Planet <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
+
+    Параметры:
+
+    **output_filename** — имя входного файла
+
+    **space_objects** — список объектов планет и звёзд
+    """
+    with open(output_filename, 'w') as out_file:
+        for obj in space_objects:
+            out_file.write(
+                "{} {} {} {} {} {} {} {} {}\n".format(Timer, obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
+                                                      obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy))
+
+
 if __name__ == "__main__":
     print("This module is not for direct call!")

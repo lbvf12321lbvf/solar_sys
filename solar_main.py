@@ -9,6 +9,8 @@ import time
 import numpy as np
 import ctypes
 
+name_of_file = 'one_satellite.txt'
+
 timer = None
 
 alive = True
@@ -50,7 +52,7 @@ def start_execution():
 def save_execution():
     """Обработчик события нажатия на кнопку Save.
     """
-    write_space_objects_data_to_file('solar_system.txt', space_objects)
+    write_space_objects_data_to_file(str(name_of_file), space_objects)
 
 
 def pause_execution():
@@ -78,7 +80,7 @@ def open_file():
     global model_time
 
     model_time = 0.0
-    in_filename = "solar_system.txt"
+    in_filename = str(name_of_file)
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y)) for obj in space_objects])
     calculate_scale_factor(max_distance)
@@ -103,7 +105,7 @@ def slider_reaction(event):
 
 def init_ui(screen):
     global browser
-    slider = thorpy.SliderX(100, (-10, 10), "Simulation speed")
+    slider = thorpy.SliderX(100, (0, 10), "Simulation speed")
     slider.user_func = slider_reaction
     button_stop = thorpy.make_button("Quit", func=stop_execution)
     button_pause = thorpy.make_button("Pause", func=pause_execution)
