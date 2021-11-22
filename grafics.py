@@ -23,7 +23,8 @@ def draw_garphic():
                 radius_vec = (float(data[6]) ** 2 + float(data[7]) ** 2) ** 0.5
                 graphic(velocity, radius_vec, data[1])
             #i, Timer, obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m, obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy
-
+    plt.cla()
+    plt.clf()
     plt.subplots(2,2, figsize=(10,10))
 
     #subplot 1
