@@ -175,7 +175,9 @@ def main():
     height = user32.GetSystemMetrics(1) - 55
     screen = pg.display.set_mode((width, height))
     with open("stats.txt", 'r') as input_file:
-        last_time = int((input_file[0].split())[1])
+        for line in input_file:
+            last_time = int((line.split())[1])
+            break
     drawer = Drawer(screen)
     menu, box, timer = init_ui(screen)
     perform_execution = True
