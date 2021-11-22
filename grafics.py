@@ -12,9 +12,11 @@ def graphic(satellite_v, satellite_r,  time):
 
 
 def draw_garphic():
+    global t, v, r
     t = []
     v = []
     r = []
+
     with open("stats.txt", 'r') as input_file:
         for line in input_file:
             data = line.split()
