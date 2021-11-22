@@ -141,9 +141,10 @@ def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
         history = input_file.read()
     with open(output_filename, 'w') as out_file:
         out_file.write(history)
-        for obj in space_objects:
+        for i in range(len(space_objects)):
+            obj = space_objects[i]
             out_file.write(
-                "{} {} {} {} {} {} {} {} {}\n".format(int(Timer), obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
+                "{} {} {} {} {} {} {} {} {} {}\n".format(i, int(Timer), obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
                                                       obj.obj.x, obj.obj.y, obj.obj.Vx, obj.obj.Vy))
 
 
