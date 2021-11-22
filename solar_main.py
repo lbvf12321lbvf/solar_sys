@@ -4,6 +4,7 @@
 from solar_vis import *
 from solar_model import *
 from solar_input import *
+from grafics import *
 import thorpy
 import time
 import numpy as np
@@ -70,6 +71,12 @@ def stop_execution():
     global alive
     alive = False
 
+def do_graph():
+    with open(r'stats.txt') as tex:
+        pass
+
+
+
 
 def open_file():
     """Открывает диалоговое окно выбора имени файла и вызывает
@@ -79,7 +86,6 @@ def open_file():
     global space_objects
     global browser
     global model_time
-
     model_time = 0.0
     in_filename = str(name_of_file)
     space_objects = read_space_objects_data_from_file(in_filename)
@@ -112,6 +118,7 @@ def init_ui(screen):
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
     button_save = thorpy.make_button("Save", func=save_execution)
+    button_graph = thorpy.make_button("Graphics", func=do_graph)
     Timer = thorpy.OneLineText("Seconds passed")
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
@@ -123,6 +130,7 @@ def init_ui(screen):
         button_play,
         button_load,
         button_save,
+        button_graph,
         Timer])
     reaction1 = thorpy.Reaction(reacts_to=thorpy.constants.THORPY_EVENT,
                                 reac_func=slider_reaction,
