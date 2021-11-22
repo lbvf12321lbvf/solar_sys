@@ -72,8 +72,7 @@ def stop_execution():
     alive = False
 
 def do_graph():
-    with open(r'stats.txt') as tex:
-        pass
+    draw_garphic()
 
 
 
