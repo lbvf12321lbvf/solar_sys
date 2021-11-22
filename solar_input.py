@@ -139,8 +139,8 @@ def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
     """
     with open(output_filename, 'r') as input_file:
         history = input_file.read()
-        input_file.write(history)
     with open(output_filename, 'w') as out_file:
+        out_file.write(history)
         for obj in space_objects:
             out_file.write(
                 "{} {} {} {} {} {} {} {} {}\n".format(Timer, obj.obj.type, obj.obj.R, obj.obj.color, obj.obj.m,
