@@ -137,6 +137,9 @@ def write_space_objects_stats_to_file(output_filename, space_objects, Timer):
 
     **space_objects** — список объектов планет и звёзд
     """
+    with open(output_filename, 'r') as input_file:
+        history = inp.read()
+        input_file.write(history)
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
             out_file.write(
